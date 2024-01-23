@@ -9,13 +9,14 @@ import java.util.List;
 public class Program
 {
 
+    // Main class to execute the maze solving algorithm
 
     public static void main(String[] args)
     {
         int rows = 0, cols = 0;
         int[][] grid;
 
-
+        // Read maze data from the specified file
         try (BufferedReader fin = new BufferedReader(new FileReader("/Users/gvklok/Documents/cst-201/MazeSolver4real/src/Maze.txt")))
         {
             if (fin.ready())
@@ -30,7 +31,7 @@ public class Program
                 System.exit(2);
             }
 
-
+            // Initialize the maze grid based on file input
             grid = new int[rows][cols];
 
 
@@ -50,7 +51,7 @@ public class Program
             return;
         }
 
-
+        // Create Maze object and set start and end cells
         Maze maze = new Maze(grid);
         MazeCell current = null, end = null;
 
@@ -72,11 +73,12 @@ public class Program
             }
         }
 
-
+        // Output start and end points
         System.out.println("Start: (" + current.getRow() + "," + current.getColumn() + ")");
         System.out.println("End: (" + end.getRow() + "," + end.getColumn() + ")");
 
         List<MazeCell> pathList = maze.getPathList();
+        // Perform depth-first search and output the result
 
         if (maze.depthFirstSearch(current, end))
         {
