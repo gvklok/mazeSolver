@@ -48,7 +48,10 @@ public class Maze {
     }
 
     // Depth-first search algorithm to find a path from current to end cell
+    // Depth-first search algorithm to find a path from current to end cell
     public boolean depthFirstSearch(MazeCell current, MazeCell end) {
+        pathList.add(current); // Add the start cell to the pathList
+
         if (current == end) {
             return true; // Path found
         }
@@ -59,7 +62,6 @@ public class Maze {
         for (MazeCell neighbor : current.getNeighbors(this)) {
             if (!neighbor.isVisited()) {
                 // Recursively search for a path starting from the neighbor cell
-                pathList.add(neighbor);
                 if (depthFirstSearch(neighbor, end)) {
                     return true;
                 } else {
